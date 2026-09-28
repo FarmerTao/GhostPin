@@ -37,14 +37,14 @@ This is a landmark coordinate, not an official registration geofence or a guaran
 Offline conversion (no phone access):
 
 ```bash
-python3 skills/ios-location/scripts/coordinates.py \
+python3 skills/ghostpin/scripts/coordinates.py \
   --lat 31.300023 --lon 121.505283 --source gcj02
 ```
 
 With connection, Developer Mode, and preparation complete, run in a persistent terminal:
 
 ```bash
-skills/ios-location/.venv/bin/python skills/ios-location/scripts/location.py \
+skills/ghostpin/.venv/bin/python skills/ghostpin/scripts/location.py \
   set --udid YOUR_DEVICE_ID --lat 31.300023 --lon 121.505283 --source gcj02
 ```
 

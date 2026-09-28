@@ -1,15 +1,15 @@
 # Skill 中文说明
 
-[English agent entry point](../skills/ios-location/SKILL.md) | 简体中文
+[English agent entry point](../skills/ghostpin/SKILL.md) | 简体中文
 
-实际被 agent 发现和读取的入口是英文 `SKILL.md`，名称 `ios-location`。本页解释同一套流程，不是第二个独立 skill；中英文共用脚本，避免行为分叉。Agent 应使用用户的语言沟通。
+实际被 agent 发现和读取的入口是英文 `SKILL.md`，名称 `ghostpin`。本页解释同一套流程，不是第二个独立 skill；中英文共用脚本，避免行为分叉。Agent 应使用用户的语言沟通。
 
 ## 请求分流
 
 - “恢复/停止”：直接清除已有模拟定位，不先设置新位置或安装镜像。
 - “设置位置”：确定地点及坐标系。地点含糊时确认一次，保留已有答案和授权。
 - “仅解释”：只说明，不操作设备。
-- 复旦案例见[示例](../skills/ios-location/references/fudan-example.zh-CN.md)，不能推导所有小程序可用。
+- 复旦案例见[示例](../skills/ghostpin/references/fudan-example.zh-CN.md)，不能推导所有小程序可用。
 
 ## Agent 操作顺序
 
@@ -22,7 +22,7 @@
 7. 分别验证命令、地图当前位置、小程序重新获取位置三层结果，只报告已有证据。上游进入等待状态不代表目标 App 接受。
 8. 用户完成后，向确切会话 Ctrl+C，由 helper 停止自身子进程并 clear；缺少成功结果时显式 `clear --udid ID`。回地图确认，不把拔线或杀进程视为恢复。
 
-首次执行前阅读[完整操作与排障](../skills/ios-location/references/workflow.zh-CN.md)。恢复失败要明确“尚未确认”，保留重连、解锁、clear 和必要时用户重启的指导。
+首次执行前阅读[完整操作与排障](../skills/ghostpin/references/workflow.zh-CN.md)。恢复失败要明确“尚未确认”，保留重连、解锁、clear 和必要时用户重启的指导。
 
 ## 执行边界
 

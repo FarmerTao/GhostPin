@@ -6,10 +6,10 @@
 
 ```text
 README.md / README.zh-CN.md         User entry points
-skills/ios-location/SKILL.md        Agent entry point
-skills/ios-location/agents/         Codex UI metadata
-skills/ios-location/scripts/        Bootstrap, CLI, coordinates, DDI download
-skills/ios-location/references/     English/Chinese phone workflow and example
+skills/ghostpin/SKILL.md        Agent entry point
+skills/ghostpin/agents/         Codex UI metadata
+skills/ghostpin/scripts/        Bootstrap, CLI, coordinates, DDI download
+skills/ghostpin/references/     English/Chinese phone workflow and example
 docs/                              Contributor and translated skill guidance
 tests/                             Offline behavioral tests
 ```
@@ -22,20 +22,20 @@ From the repository root, using Python 3.12+ on macOS (the unit suite also uses 
 
 ```bash
 python3 -m unittest discover -s tests -v
-python3 -m compileall -q skills/ios-location/scripts tests
-bash -n skills/ios-location/scripts/bootstrap.sh
-python3 skills/ios-location/scripts/location.py --help
-python3 skills/ios-location/scripts/coordinates.py --lat 31.300023 --lon 121.505283 --source gcj02
+python3 -m compileall -q skills/ghostpin/scripts tests
+bash -n skills/ghostpin/scripts/bootstrap.sh
+python3 skills/ghostpin/scripts/location.py --help
+python3 skills/ghostpin/scripts/coordinates.py --lat 31.300023 --lon 121.505283 --source gcj02
 git diff --check
 ```
 
 No phone or network is accessed by these tests. They cover coordinate rejection and the recorded landmark conversion, zero/multiple/missing-device selection, locked or unconfirmed mounts, timeout/error handling, same-device cleanup after session interruption, cleanup failure reporting, exclusive session locks, and pinned/checksummed download behavior with mocked responses.
 
-If your environment has Codex's `skill-creator`, its `scripts/quick_validate.py skills/ios-location` additionally validates skill frontmatter. It is an optional maintainer check, not a runtime dependency or a substitute for behavioral testing.
+If your environment has Codex's `skill-creator`, its `scripts/quick_validate.py skills/ghostpin` additionally validates skill frontmatter. It is an optional maintainer check, not a runtime dependency or a substitute for behavioral testing.
 
 ## Hardware validation is separate
 
-The original direct-command evidence is in the [case study](../skills/ios-location/references/fudan-example.md). Do not claim the wrapper tests prove a new OS/device combination works. For a user-authorized hardware test, record OS/runtime versions, Developer Mode state, mount result, set result, actual Maps observation, app observation if requested, clear result, and final Maps observation. Never commit raw UDIDs, pairing records, screenshots containing private information, or a user's location history.
+The original direct-command evidence is in the [case study](../skills/ghostpin/references/fudan-example.md). Do not claim the wrapper tests prove a new OS/device combination works. For a user-authorized hardware test, record OS/runtime versions, Developer Mode state, mount result, set result, actual Maps observation, app observation if requested, clear result, and final Maps observation. Never commit raw UDIDs, pairing records, screenshots containing private information, or a user's location history.
 
 Review an agent against realistic scenarios without executing device commands: a hidden Developer Mode setting, two attached phones, a phone that locks before mounting, an unknown coordinate system, a map that moves while an app rejects location, and a request to restore after the session disappeared. Correct outcomes preserve device selection, wait for required user phone actions, make no unsupported app claims, and prioritize recovery.
 

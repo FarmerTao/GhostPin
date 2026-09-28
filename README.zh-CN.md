@@ -1,4 +1,4 @@
-# iOS Location Agent Skill
+# GhostPin
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
@@ -10,23 +10,23 @@
 
 原始会话使用 macOS 15.4、Python 3.12.14、`pymobiledevice3` 11.19.4、iOS 26.6.1，完成了开发者模式查询与入口显示、开发者支持镜像挂载、定位设置命令进入持续等待状态，以及恢复命令成功退出。
 
-目标是复旦大学邯郸校区光华楼附近，用户想在微信小程序“复旦学生注册”中使用。**会话中没有用户确认地图已正确移动，也没有小程序接受模拟位置的证据。** 因此本仓库不声称注册成功、绕过检查或无法被识别。详见[复旦示例](skills/ios-location/references/fudan-example.zh-CN.md)。
+目标是复旦大学邯郸校区光华楼附近，用户想在微信小程序“复旦学生注册”中使用。**会话中没有用户确认地图已正确移动，也没有小程序接受模拟位置的证据。** 因此本仓库不声称注册成功、绕过检查或无法被识别。详见[复旦示例](skills/ghostpin/references/fudan-example.zh-CN.md)。
 
 ## 安装 skill
 
-把整个 `skills/ios-location` 文件夹复制到 agent 的 skill 目录，保留脚本和 references。Codex 常用默认路径示例：
+把整个 `skills/ghostpin` 文件夹复制到 agent 的 skill 目录，保留脚本和 references。Codex 常用默认路径示例：
 
 ```bash
 mkdir -p "$HOME/.codex/skills"
 # 目标目录若已存在，先检查原内容，不要直接覆盖。
-cp -R skills/ios-location "$HOME/.codex/skills/"
+cp -R skills/ghostpin "$HOME/.codex/skills/"
 ```
 
-根据宿主要求重新加载 skill 或重启 agent。其他 agent 请使用其支持的发现目录，或明确要求它读取 `skills/ios-location/SKILL.md`。Agent 必须能在**实际连接手机的电脑**上运行终端；远程云沙箱不会自动获得本机 USB 访问能力。
+根据宿主要求重新加载 skill 或重启 agent。其他 agent 请使用其支持的发现目录，或明确要求它读取 `skills/ghostpin/SKILL.md`。Agent 必须能在**实际连接手机的电脑**上运行终端；远程云沙箱不会自动获得本机 USB 访问能力。
 
 示例请求：
 
-> 使用 $ios-location，引导我连接 iPhone，把定位模拟到复旦大学邯郸校区附近。帮我在地图中验证，并在结束后恢复真实定位。
+> 使用 $ghostpin，引导我连接 iPhone，把定位模拟到复旦大学邯郸校区附近。帮我在地图中验证，并在结束后恢复真实定位。
 
 用户说“帮我恢复真实定位”时，应直接进入恢复流程，不要先重新设置位置。
 
@@ -43,7 +43,7 @@ cp -R skills/ios-location "$HOME/.codex/skills/"
 以下从仓库根目录执行；安装到其他位置后，修改 `SKILL`。变量需保留在同一个终端中；agent 的独立命令调用可以使用绝对路径。
 
 ```bash
-SKILL="$PWD/skills/ios-location"
+SKILL="$PWD/skills/ghostpin"
 bash "$SKILL/scripts/bootstrap.sh"
 # 指定已经安装的新版 Python：
 # PYTHON_BIN=/absolute/path/to/python3.12 bash "$SKILL/scripts/bootstrap.sh"
@@ -91,15 +91,15 @@ DEVICE_ID='replace-with-your-device-id'
 "$PY" "$SKILL/scripts/location.py" clear --udid "$DEVICE_ID"
 ```
 
-到地图重新确认当前位置。不要假定拔线就会恢复。单独执行 `clear` 不会关闭还在等待的 `set` 终端；开始新会话前先退出旧会话。常规恢复失败时，见[排障说明](skills/ios-location/references/workflow.zh-CN.md#排障)，包括重启手机后重新检查地图。
+到地图重新确认当前位置。不要假定拔线就会恢复。单独执行 `clear` 不会关闭还在等待的 `set` 终端；开始新会话前先退出旧会话。常规恢复失败时，见[排障说明](skills/ghostpin/references/workflow.zh-CN.md#排障)，包括重启手机后重新检查地图。
 
 ## 文档导航
 
 | 内容 | English | 中文 |
 |---|---|---|
-| Agent 入口 | [SKILL.md](skills/ios-location/SKILL.md) | [Skill 说明](docs/skill.zh-CN.md) |
-| 连接、手机操作、恢复与排障 | [Workflow](skills/ios-location/references/workflow.md) | [操作与排障](skills/ios-location/references/workflow.zh-CN.md) |
-| 复旦/微信案例与坐标来源 | [Example](skills/ios-location/references/fudan-example.md) | [复旦示例](skills/ios-location/references/fudan-example.zh-CN.md) |
+| Agent 入口 | [SKILL.md](skills/ghostpin/SKILL.md) | [Skill 说明](docs/skill.zh-CN.md) |
+| 连接、手机操作、恢复与排障 | [Workflow](skills/ghostpin/references/workflow.md) | [操作与排障](skills/ghostpin/references/workflow.zh-CN.md) |
+| 复旦/微信案例与坐标来源 | [Example](skills/ghostpin/references/fudan-example.md) | [复旦示例](skills/ghostpin/references/fudan-example.zh-CN.md) |
 | 测试与维护 | [Development](docs/development.md) | [开发说明](docs/development.zh-CN.md) |
 
 ## 范围与数据

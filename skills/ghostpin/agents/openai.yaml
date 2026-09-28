@@ -1,0 +1,4 @@
+interface:
+  display_name: "GhostPin"
+  short_description: "Guide iPhone location simulation and reliable recovery"
+  default_prompt: "Use $ghostpin to connect my iPhone, simulate my chosen location, verify it, and restore real location when I finish."

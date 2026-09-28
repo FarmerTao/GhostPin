@@ -37,14 +37,14 @@
 离线转换，不访问手机：
 
 ```bash
-python3 skills/ios-location/scripts/coordinates.py \
+python3 skills/ghostpin/scripts/coordinates.py \
   --lat 31.300023 --lon 121.505283 --source gcj02
 ```
 
 完成连接、开发者模式和支持文件准备后，在持续运行的终端执行：
 
 ```bash
-skills/ios-location/.venv/bin/python skills/ios-location/scripts/location.py \
+skills/ghostpin/.venv/bin/python skills/ghostpin/scripts/location.py \
   set --udid YOUR_DEVICE_ID --lat 31.300023 --lon 121.505283 --source gcj02
 ```
 

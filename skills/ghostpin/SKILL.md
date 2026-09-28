@@ -1,9 +1,9 @@
 ---
-name: ios-location
+name: ghostpin
 description: Guide a locally connected iPhone through macOS USB setup, Developer Mode, temporary location simulation, verification, and restoration using pymobiledevice3. Use for physical iPhone location requests, including app or WeChat mini-program testing.
 ---
 
-# iOS Location
+# GhostPin
 
 Use this skill on the Mac physically connected to the iPhone. Respond in the user's language. English is the default documentation language; Chinese phone instructions are in [workflow.zh-CN.md](references/workflow.zh-CN.md). Read [workflow.md](references/workflow.md) before first device execution, and consult its troubleshooting section on an actual failure.
 

@@ -1,4 +1,4 @@
-# iOS Location Agent Skill
+# GhostPin
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
@@ -10,23 +10,23 @@ Let a local AI agent guide an iPhone through USB connection, Developer Mode, sim
 
 In the original session, macOS 15.4, Python 3.12.14, `pymobiledevice3` 11.19.4, and iOS 26.6.1 were used. Developer Mode was queried and its settings entry revealed, a personalized developer image was mounted, the location command entered its active waiting state, and the clear command later exited successfully.
 
-The target was near Guanghua Building, Fudan University Handan Campus. “复旦学生注册” was the user's target WeChat mini program. **The session contains no user confirmation that Maps moved correctly or that the mini program accepted the location.** This repository does not claim successful registration, bypassing app checks, or undetectable simulation. See the [case study](skills/ios-location/references/fudan-example.md).
+The target was near Guanghua Building, Fudan University Handan Campus. “复旦学生注册” was the user's target WeChat mini program. **The session contains no user confirmation that Maps moved correctly or that the mini program accepted the location.** This repository does not claim successful registration, bypassing app checks, or undetectable simulation. See the [case study](skills/ghostpin/references/fudan-example.md).
 
 ## Install the skill
 
-Copy the entire `skills/ios-location` directory, including its scripts and references, into your agent's skill directory. For Codex with the conventional default directory:
+Copy the entire `skills/ghostpin` directory, including its scripts and references, into your agent's skill directory. For Codex with the conventional default directory:
 
 ```bash
 mkdir -p "$HOME/.codex/skills"
 # If this destination already exists, review it before replacing anything.
-cp -R skills/ios-location "$HOME/.codex/skills/"
+cp -R skills/ghostpin "$HOME/.codex/skills/"
 ```
 
-Reload skills or restart the agent if required by your host. For another agent, use its supported skill discovery path, or explicitly ask it to read `skills/ios-location/SKILL.md`. The agent needs a terminal on the **computer physically connected to the phone**; a remote cloud sandbox cannot access that USB device by itself.
+Reload skills or restart the agent if required by your host. For another agent, use its supported skill discovery path, or explicitly ask it to read `skills/ghostpin/SKILL.md`. The agent needs a terminal on the **computer physically connected to the phone**; a remote cloud sandbox cannot access that USB device by itself.
 
 Example request:
 
-> Use $ios-location to guide me through connecting my iPhone and simulate a location near Fudan University's Handan Campus. Help me verify it in Maps and restore the real location afterwards.
+> Use $ghostpin to guide me through connecting my iPhone and simulate a location near Fudan University's Handan Campus. Help me verify it in Maps and restore the real location afterwards.
 
 An instruction such as “restore my real location” should trigger the recovery workflow immediately, without setting another location first.
 
@@ -43,7 +43,7 @@ An instruction such as “restore my real location” should trigger the recover
 Run the following from this repository's root. After copying the skill elsewhere, adjust `SKILL` to its installed directory. Keep shell variables in the same terminal, or use full paths in agent tool calls.
 
 ```bash
-SKILL="$PWD/skills/ios-location"
+SKILL="$PWD/skills/ghostpin"
 bash "$SKILL/scripts/bootstrap.sh"
 # To select an existing newer Python explicitly:
 # PYTHON_BIN=/absolute/path/to/python3.12 bash "$SKILL/scripts/bootstrap.sh"
@@ -91,15 +91,15 @@ Press **Ctrl+C** in the running helper. It stops its own child process and expli
 "$PY" "$SKILL/scripts/location.py" clear --udid "$DEVICE_ID"
 ```
 
-Check current location in Maps. Do not assume unplugging the cable restores it. A separate `clear` command clears location but does not close an already waiting `set` terminal; close that session before starting a new one. If normal recovery fails, consult [troubleshooting](skills/ios-location/references/workflow.md#troubleshooting), including restarting the phone and rechecking Maps.
+Check current location in Maps. Do not assume unplugging the cable restores it. A separate `clear` command clears location but does not close an already waiting `set` terminal; close that session before starting a new one. If normal recovery fails, consult [troubleshooting](skills/ghostpin/references/workflow.md#troubleshooting), including restarting the phone and rechecking Maps.
 
 ## Documentation
 
 | Document | English | 中文 |
 |---|---|---|
-| Agent entry point | [SKILL.md](skills/ios-location/SKILL.md) | [Skill explanation](docs/skill.zh-CN.md) |
-| Phone setup, agent execution, recovery, troubleshooting | [Workflow](skills/ios-location/references/workflow.md) | [操作与排障](skills/ios-location/references/workflow.zh-CN.md) |
-| Fudan / WeChat case and coordinate provenance | [Example](skills/ios-location/references/fudan-example.md) | [复旦示例](skills/ios-location/references/fudan-example.zh-CN.md) |
+| Agent entry point | [SKILL.md](skills/ghostpin/SKILL.md) | [Skill explanation](docs/skill.zh-CN.md) |
+| Phone setup, agent execution, recovery, troubleshooting | [Workflow](skills/ghostpin/references/workflow.md) | [操作与排障](skills/ghostpin/references/workflow.zh-CN.md) |
+| Fudan / WeChat case and coordinate provenance | [Example](skills/ghostpin/references/fudan-example.md) | [复旦示例](skills/ghostpin/references/fudan-example.zh-CN.md) |
 | Tests and maintenance | [Development](docs/development.md) | [开发说明](docs/development.zh-CN.md) |
 
 ## Boundaries and data

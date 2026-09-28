@@ -18,7 +18,7 @@ MAX_BYTES = 100 * 1024 * 1024
 def request(path, raw=False):
     req = urllib.request.Request(API + path, headers={
         "Accept": "application/vnd.github.raw+json" if raw else "application/vnd.github+json",
-        "User-Agent": "ios-location-agent-skill",
+        "User-Agent": "ghostpin",
     })
     return urllib.request.urlopen(req, timeout=60)
 

@@ -6,10 +6,10 @@
 
 ```text
 README.md / README.zh-CN.md         用户入口
-skills/ios-location/SKILL.md        Agent 入口
-skills/ios-location/agents/         Codex 展示元数据
-skills/ios-location/scripts/        安装、CLI、坐标转换、镜像下载
-skills/ios-location/references/     中英文手机流程与示例
+skills/ghostpin/SKILL.md        Agent 入口
+skills/ghostpin/agents/         Codex 展示元数据
+skills/ghostpin/scripts/        安装、CLI、坐标转换、镜像下载
+skills/ghostpin/references/     中英文手机流程与示例
 docs/                              维护及 skill 中文说明
 tests/                             离线行为测试
 ```
@@ -22,20 +22,20 @@ tests/                             离线行为测试
 
 ```bash
 python3 -m unittest discover -s tests -v
-python3 -m compileall -q skills/ios-location/scripts tests
-bash -n skills/ios-location/scripts/bootstrap.sh
-python3 skills/ios-location/scripts/location.py --help
-python3 skills/ios-location/scripts/coordinates.py --lat 31.300023 --lon 121.505283 --source gcj02
+python3 -m compileall -q skills/ghostpin/scripts tests
+bash -n skills/ghostpin/scripts/bootstrap.sh
+python3 skills/ghostpin/scripts/location.py --help
+python3 skills/ghostpin/scripts/coordinates.py --lat 31.300023 --lon 121.505283 --source gcj02
 git diff --check
 ```
 
 测试不访问手机或网络，覆盖坐标拒绝和案例转换、零/多设备与原设备缺失、锁屏与挂载证据缺失、超时和错误、会话中断后同设备恢复、恢复失败报告、会话互斥，以及用模拟响应验证固定 commit 与下载校验。
 
-若环境有 Codex `skill-creator`，可额外运行其中的 `scripts/quick_validate.py skills/ios-location` 检查 frontmatter。它是可选维护检查，不是运行依赖，也不能替代行为测试。
+若环境有 Codex `skill-creator`，可额外运行其中的 `scripts/quick_validate.py skills/ghostpin` 检查 frontmatter。它是可选维护检查，不是运行依赖，也不能替代行为测试。
 
 ## 真机验证另行记录
 
-原始上游命令证据见[案例](../skills/ios-location/references/fudan-example.zh-CN.md)。不要声称离线测试能证明新的系统/机型兼容。用户授权真机测试时，记录系统/运行时版本、开发者模式、挂载、set、实际地图观察、按需应用观察、clear，以及恢复后的地图观察。不得提交原始 UDID、配对记录、含隐私的截图或用户位置历史。
+原始上游命令证据见[案例](../skills/ghostpin/references/fudan-example.zh-CN.md)。不要声称离线测试能证明新的系统/机型兼容。用户授权真机测试时，记录系统/运行时版本、开发者模式、挂载、set、实际地图观察、按需应用观察、clear，以及恢复后的地图观察。不得提交原始 UDID、配对记录、含隐私的截图或用户位置历史。
 
 可以不运行设备命令，推演这些 agent 场景：开发者模式入口缺失、两台手机连接、挂载前自动锁屏、未知坐标系、地图改变而应用拒绝、会话丢失后要求恢复。正确行为应固定目标设备、等待必要的手机操作、不夸大应用结果、优先恢复。
 

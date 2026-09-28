@@ -10,7 +10,7 @@ import tempfile
 import unittest
 from unittest.mock import Mock, patch
 
-SCRIPTS = Path(__file__).resolve().parents[1] / "skills/ios-location/scripts"
+SCRIPTS = Path(__file__).resolve().parents[1] / "skills/ghostpin/scripts"
 sys.path.insert(0, str(SCRIPTS))
 import coordinates
 import fetch_ddi
