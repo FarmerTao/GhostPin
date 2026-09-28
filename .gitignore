@@ -1,0 +1,12 @@
+.venv/
+.cache/
+.state/
+__pycache__/
+*.py[cod]
+*.log
+.DS_Store
+.env
+*.dmg
+*.trustcache
+*pair_record*
+*.pem
